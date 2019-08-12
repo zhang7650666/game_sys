@@ -101,7 +101,7 @@
           label="操作"
           width="200">
           <template slot-scope="scope">
-            <el-button @click="handleCheck(scope.row)" type="text" size="small">查看</el-button>
+            <!-- <el-button @click="handleCheck(scope.row)" type="text" size="small">查看</el-button> -->
             <el-button type="text" size="small" @click="handleEdit(scope.row)">编辑</el-button>
             <el-button type="text" size="small" @click="handleAddGoods(scope.row)">添加商品</el-button>
           </template>

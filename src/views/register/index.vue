@@ -82,10 +82,10 @@ import {adduser} from '@/api/login';
       };
       return {
         ruleForm: {
-          pass: '123',
-          checkPass: '123',
-          name: '上海科技',
-          tel: '18637407566',
+          pass: '',
+          checkPass: '',
+          name: '',
+          tel: '',
         },
         rules: {
           pass: [
@@ -117,7 +117,6 @@ import {adduser} from '@/api/login';
               re_pwd: params.checkPass,
             }
             this.handleAdduser(query);
-            console.log('校验通过了吗', this.ruleForm)
           } else {
             console.log('error submit!!');
             return false;
@@ -127,9 +126,8 @@ import {adduser} from '@/api/login';
       // 注册接口校验
       handleAdduser(params) {
         adduser(params).then(res => {
-          console.log(res);
           if(res.code == 200){
-            this.$router.push({path: '/game'});
+            this.$router.push({path: '/login'});
           }
         });
       },

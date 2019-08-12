@@ -100,17 +100,17 @@
         style="width: 100%"
         v-loading="listLoading"
         border
-        max-height="350"
+        height="350"
         >
-        <el-table-column
+        <!-- <el-table-column
           fixed
           prop="id"
           label="订单ID"
           width="80"
         >
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column
-          prop="notify_url"
+          prop="uuid"
           label="用户UUID"
           width="200">
         </el-table-column>
@@ -118,6 +118,11 @@
           prop="third_nickname"
           label="用户昵称"
           width="200">
+          <template slot-scope="scope">
+            <div>
+              <span>{{scope.row.sys_nickname ? scope.row.sys_nickname : scope.row.third_nickname}}</span>
+            </div>
+          </template>
         </el-table-column>
         <el-table-column
           label="所属公司名称"
@@ -224,31 +229,14 @@
           token: getToken(),
           onder_no: '', // 订单号(搜索条件) 默认空
           pay_way: '', // 1微信,2支付宝,默认空
-          notify_status: 0, // 1通知成功,2通知失败,0初始化默认空
+          notify_status: '', // 1通知成功,2通知失败,0初始化默认空
           start_time: '', // 开始时间(搜索条件) 格式:年月日时分秒
           end_time: '', // 结束时间(搜索条件) 格式:年月日时分秒
           game_key: '', // 游戏key(搜索条件) 默认空
           goods_key: '', // 商品key(搜索条件) 默认空
         },
         total: 1, // 游戏总条数
-        list: [
-          {
-            "third_nickname": "Hadwin", // 用户昵称
-            "sys_nickname": "叶氏", // 用户昵称  (如果sys_nickname 为空  取third_nickname)
-            "goods_name": "测试游戏商品1", // 商品名称
-            "id": 45,
-            "order_no": "UC_WX20190605110602KFu5", // 订单号
-            "amount": 1,//价格分为单位
-            "status": 1,// 订单状态:0预下单,1下单成功,2下单失败
-            "notify_status": 1,   //通知状态0初始化,1成功,2失败
-            "pay_time": "2019-06-14 15:24:31",//支付时间
-            "game_name": "测试游戏修改",//游戏名称
-            "pay_way": "1",//支付方式 1微信 2支付宝
-            "create_time": "2019-06-05   11:06:19",//创建时间
-            "update_time": "2019-06-05 11:06:02",//更新时间
-            "notify_time": "2019-06-05 11:06:19"//通知时间
-          },
-        ],
+        list: [],
         business_name: '测试公司', // 所属公司
         pay_way_op: [ // 支付类型
           {
@@ -408,7 +396,7 @@
         const params = {
           start:1,
           limit: 9999,
-          name: '',
+          name: null,
           token: getToken(),
         };
         if(this.gameName != '') {
@@ -423,33 +411,38 @@
         const params = {
           start:1,
           limit: 999999,
-          name: '',
+          name: null,
           token: getToken(),
-          game_id: '',
-          is_active: '',
+          game_id: null,
+          is_active: null,
         };
         if(this.gameIndex != ''){
-          params.game_id = this.gameList[this.gameIndex].id;
+          params.game_id = this.gameIndex
         }
         listgoods(params).then(res => {
           this.goodList = this.timeSort(res.data.list);
+          console.log('goodList', this.goodList);
         });
       },
       // 游戏变更商品也变更
       handleGameChange() {
         this.gameList.map((item, index) => {
           if(item.key == this.listQuery.game_key){
-            this.gameIndex = index;
+            this.gameIndex = item.id;
             this.getGoodList()
           }
         })
       },
       // 商品变更游戏也变更
       handleGoodChange() {
-        this.goodList.map((item, index) => {
+        this.goodList.map((item) => {
           if(item.key == this.listQuery.goods_key){
-            this.gameName = item.game_name;
-            this.getGameList()
+            this.gameList.map((itemGame) => {
+              if(itemGame.id ==item.game_id) {
+                this.gameName = itemGame.name;
+                this.getGameList()
+              }
+            })
           }
         })
       },

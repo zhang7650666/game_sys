@@ -36,7 +36,7 @@ export function editGoods(params) {
       amount: params.amount,
       is_active: params.is_active,
       game_id: params.game_id,
-      id: params.game_id,
+      id: params.id,
     }
   })
 }
@@ -47,5 +47,20 @@ export function detailGoods(params) {
     url: 'ly/disgoods',
     method: 'get',
     params: params,
+  })
+}
+
+
+// 修改状态
+export function editStatus(params) {
+  return request({
+    url: 'ly/updatetypegoods',
+    method: 'post',
+    data: {
+      token: getToken(),
+      id: params.id,
+      is_active: params.is_active,
+      game_id: params.game_id,
+    }
   })
 }

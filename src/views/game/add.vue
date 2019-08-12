@@ -11,10 +11,10 @@
             <el-input v-model="value.notify_url"></el-input><el-button class="back-url" type="primary"  @click="testBackUrl('gameForm')">测试支付回调</el-button>
             <p class="err-tips">验证成功</p>
           </el-form-item>
-          <el-form-item label="是否禁用：" prop="is_active">
+          <!-- <el-form-item label="是否禁用：" prop="is_active">
             <el-radio v-model="value.is_active" :label="0">禁用</el-radio>
             <el-radio v-model="value.is_active" :label="1">启用</el-radio>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item >
             <el-button style="width: 40%"  @click="handleCancel()">取消</el-button>
             <el-button style="width: 40%" type="primary"  @click="handleNext('gameForm')">确定</el-button>

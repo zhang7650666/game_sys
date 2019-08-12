@@ -19,7 +19,7 @@ export function addGame(params) {
       name: params.name,
       token: getToken(),
       notify_url: params.notify_url,
-      is_active: params.is_active,
+      // is_active: params.is_active,
     }
   })
 }

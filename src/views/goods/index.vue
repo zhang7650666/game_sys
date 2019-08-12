@@ -109,7 +109,9 @@
               :inactive-value="0"
               active-text="启"
               inactive-text="禁"
-              inactive-color="#ff4949">
+              inactive-color="#ff4949"
+              @change="handleEditStatus(scope.row)"
+              >
             </el-switch>
           </template>
         </el-table-column>
@@ -118,7 +120,7 @@
           label="操作"
           width="100">
           <template slot-scope="scope">
-            <el-button @click="handleCheck(scope.row)" type="text" size="small">查看</el-button>
+            <!-- <el-button @click="handleCheck(scope.row)" type="text" size="small">查看</el-button> -->
             <el-button type="text" size="small" @click="handleEdit(scope.row)">编辑</el-button>
           </template>
         </el-table-column>
@@ -142,7 +144,7 @@
 
 <script>
   // import { mapActions } from 'vuex'
-  import { listgoods} from '@/api/goods.js'
+  import { listgoods, editStatus} from '@/api/goods.js'
   import { listgames} from '@/api/game.js'
   import { getToken } from '@/utils/auth'
   import Cookies from 'js-cookie'
@@ -180,6 +182,12 @@
     },
     created(){
       // 获取初始化数据
+      // if (this.$route.query.game_id) {
+      //   this.listQuery.game_id = Number(this.$route.query.game_id);
+      //   this.listQuery.name = this.$route.query.name;
+      //   this.listQuery.is_active = Number(this.$route.query.is_active);
+      // }
+      this.$store.dispatch("setCompany", Cookies.get('company'));
       this.getGameList();
       this.getList()
     },
@@ -204,11 +212,6 @@
       // 商品列表
       getList() {
         this.listLoading = true;
-        if (this.$route.query.game_id) {
-          this.listQuery.game_id = Number(this.$route.query.game_id);
-          this.listQuery.name = this.$route.query.name;
-          this.listQuery.is_active = Number(this.$route.query.is_active);
-        }
         listgoods(this.listQuery).then(res => {
           this.listLoading = false;
           this.list = this.timeSort(res.data.list);
@@ -249,6 +252,10 @@
       handleAddProduct() {
         this.$router.push({path:'/goods/addgoods', query: {game_id: this.$route.query.game_id}});
       },
+      // 修改状态
+      handleEditStatus(row) {
+        editStatus(row);
+      }
     }
   }
 </script>

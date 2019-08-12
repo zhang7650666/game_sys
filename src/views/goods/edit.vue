@@ -10,10 +10,10 @@
           <el-form-item label="商品价格：" prop="amount">
             <el-input v-model="value.amount"></el-input>
           </el-form-item>
-          <el-form-item label="是否禁用：" prop="is_active">
+          <!-- <el-form-item label="是否禁用：" prop="is_active">
             <el-radio v-model="value.is_active" label="0">禁用</el-radio>
             <el-radio v-model="value.is_active" label="1">启用</el-radio>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item >
             <el-button style="width: 40%"   @click="handleCancel()">取消</el-button>
             <el-button style="width: 40%" type="primary"  @click="handleNext('gameForm')">确定</el-button>
@@ -65,6 +65,7 @@
         this.value.name = rowInfo.name;
         this.value.amount = rowInfo.amount;
         this.value.is_active = rowInfo.is_active;
+        this.value.id = rowInfo.id;
       }
     },
     methods: {
@@ -76,6 +77,7 @@
               const rowInfo = JSON.parse(this.$route.query.rowInfo);
               this.value.game_id = this.$route.query.game_id;
               this.value.id = rowInfo.id;
+              console.log(rowInfo);
             }
             editGoods(this.value).then(res => {
               console.log(res);
