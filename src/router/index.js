@@ -54,7 +54,7 @@ export const constantRouterMap = [
         path: 'game',
         name: 'gameList',
         component: () => import('@/views/game/index'),
-        meta: {title: '游戏管理', icon: 'product-list'},
+        meta: {title: '游戏列表', icon: 'product-list'},
       },
       {
         path: 'addgame',
@@ -76,7 +76,14 @@ export const constantRouterMap = [
         component: () => import('@/views/game/detail.vue'),
         meta: {title: '游戏详情', icon: 'product-cate'},
         hidden: true
-      }
+      },
+      {
+        path: 'goodslist',
+        name: 'goodsList',
+        component: () => import('@/views/goods/index'),
+        meta: {title: '商品管理', icon: 'product-list'},
+        hidden: false
+      },
     ]
   },
   {

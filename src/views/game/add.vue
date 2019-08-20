@@ -5,10 +5,10 @@
       <el-col :span="12" :offset="6">
         <el-form :model="value" :rules="rules" ref="gameForm" label-width="120px" style="width: 400px;" size="small">
           <el-form-item label="游戏名称：" prop="name" ref="clearValidName">
-            <el-input v-model="value.name"></el-input>
+            <el-input v-model="value.name" placeholder="请输入游戏名称"></el-input>
           </el-form-item>
           <el-form-item label="支付订单回调：" prop="notify_url" class="pos" ref="notify">
-            <el-input v-model="value.notify_url"></el-input><el-button class="back-url" type="primary"  @click="testBackUrl('gameForm')">测试支付回调</el-button>
+            <el-input v-model="value.notify_url"></el-input><el-button class="back-url" type="primary"  @click="testBackUrl('gameForm')" placeholder="请输入支付订单回调">测试支付回调</el-button>
             <p class="err-tips">验证成功</p>
           </el-form-item>
           <!-- <el-form-item label="是否禁用：" prop="is_active">
@@ -53,8 +53,8 @@
           notify_url: [{validator: validNotifyUrl,trigger: 'blur'}],
         },
         value:{
-          name: '王者农药',
-          notify_url: 'https://www.baidu.com',
+          name: '',
+          notify_url: '',
           is_active: 1,
         },
       };

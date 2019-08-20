@@ -48,7 +48,9 @@
       <el-button
         class="btn-add"
         @click="handleAddProduct()"
-        size="mini">
+        size="mini"
+        :disabled="listQuery.game_id == null || listQuery.game_id == ''"
+        >
         添加
       </el-button>
     </el-card>
@@ -121,7 +123,7 @@
           width="100">
           <template slot-scope="scope">
             <!-- <el-button @click="handleCheck(scope.row)" type="text" size="small">查看</el-button> -->
-            <el-button type="text" size="small" @click="handleEdit(scope.row)">编辑</el-button>
+            <el-button type="text" size="small" @click="handleEdit(scope.row)" :disabled="listQuery.game_id == null || listQuery.game_id == ''">编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -188,6 +190,7 @@
       //   this.listQuery.is_active = Number(this.$route.query.is_active);
       // }
       this.$store.dispatch("setCompany", Cookies.get('company'));
+      this.listQuery.game_id = this.getGameID()
       this.getGameList();
       this.getList()
     },
@@ -229,12 +232,12 @@
       },
       // 查看
       handleCheck(row) {
-        this.$router.push({path: '/goods/detailgoods', query: {game_id: this.$route.query.game_id}});
+        this.$router.push({path: '/goods/detailgoods', query: {game_id: this.listQuery.game_id}});
       },
       // 编辑
       handleEdit(row) {
         const rowInfo = JSON.stringify(row);
-        this.$router.push({path: '/goods/editgoods', query: {game_id: this.$route.query.game_id,rowInfo: rowInfo}});
+        this.$router.push({path: '/goods/editgoods', query: {game_id: this.listQuery.game_id,rowInfo: rowInfo}});
       },
       // 每页多少条
       handleSizeChange(val) {
@@ -250,7 +253,11 @@
 
       // 添加商品列表
       handleAddProduct() {
-        this.$router.push({path:'/goods/addgoods', query: {game_id: this.$route.query.game_id}});
+        this.$router.push({path:'/goods/addgoods', query: {game_id: this.getGameID()}});
+      },
+      // 获取游戏ID
+      getGameID() {
+        return this.$route.query.game_id ? this.$route.query.game_id : this.listQuery.game_id;
       },
       // 修改状态
       handleEditStatus(row) {

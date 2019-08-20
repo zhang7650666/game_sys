@@ -1,22 +1,27 @@
 <template>
-  <div>
+  <div class="reg-wp">
+    <div class="logo-wp">
+      <span class="avatar"></span>
+      <span class="com-logo">INGame</span>
+    </div>
+    <p class="reg-title">注册</p>
     <el-card class="login-form-layout">
-      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <div style="text-align: center">
-          <svg-icon icon-class="login-mall" style="width: 56px;height: 56px;color: #409EFF"></svg-icon>
-        </div>
-        <h2 class="login-title color-main">INGame</h2>
-        <el-form-item label="公司名称" prop="name">
-          <el-input v-model="ruleForm.name"></el-input>
+      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm clear-margin">
+        <el-form-item prop="name">
+          <i class="el-icon-user-solid pos-icon"></i>
+          <el-input v-model="ruleForm.name" placeholder="公司名称"></el-input>
         </el-form-item>
-        <el-form-item label="手机号" prop="tel">
-          <el-input v-model="ruleForm.tel"></el-input>
+        <el-form-item label="" prop="tel">
+          <i class="el-icon-mobile-phone pos-icon"></i>
+          <el-input v-model="ruleForm.tel" placeholder="手机号码"></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="pass">
-          <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+        <el-form-item label="" prop="pass">
+          <i class="el-icon-lock pos-icon"></i>
+          <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="输入密码"></el-input>
         </el-form-item>
-        <el-form-item label="确认密码" prop="checkPass">
-          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+        <el-form-item label="" prop="checkPass">
+          <i class="el-icon-lock pos-icon"></i>
+          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off" placeholder="确认密码"></el-input>
         </el-form-item>
         <el-form-item >
           <el-button style="width: 100%" type="primary"  @click="submitForm('ruleForm')">提交</el-button>
@@ -142,15 +147,38 @@ import {adduser} from '@/api/login';
     }
   }
 </script>
+<style >
+  .reg-wp .el-card__body {
+    padding: 30px;
+  }
+  .clear-margin .el-form-item__content{
+    margin-left: 30px !important;
+  }
+</style>
 
 <style scoped>
+  html, body, #app{
+    width: 100%;
+    height: 100%;
+  }
+  .reg-wp{
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: #ccc;
+    z-index: 100;
+  }
   .login-form-layout {
     position: absolute;
     left: 0;
     right: 0;
     width: 360px;
-    margin: 140px auto;
-    border-top: 10px solid #409EFF;
+    margin: 10px auto;
+    background:#fff;
+    /* border-top: 10px solrgb(33, 49, 65)EFF; */
   }
 
   .login-title {
@@ -163,6 +191,34 @@ import {adduser} from '@/api/login';
     height: auto;
     max-width: 100%;
     max-height: 100%;
-    margin-top: 200px;
+    margin-top: 50px;
   }
+  .logo-wp{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin-top: 50px;
+  }
+  .logo-wp .avatar{
+    width:100px;
+    height:100px;
+    background:#fff;
+    border-radius:100% 100%;
+    display:inline-block;
+  }
+  .com-logo{
+    margin-left: 20px;
+  }
+  .reg-title{
+    text-align: center;
+  }
+  .pos-icon{
+    position: absolute;
+    left: -30px;
+    top: 5px;
+    font-size: 24px;
+    z-index: 1000 !important;
+  }
+  
 </style>

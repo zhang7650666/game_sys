@@ -5,10 +5,10 @@
       <el-col :span="12" :offset="6">
         <el-form :model="value" :rules="rules" ref="goodsForm" label-width="120px" style="width: 400px;" size="small">
           <el-form-item label="商品名称：" prop="name" >
-            <el-input v-model="value.name"></el-input>
+            <el-input v-model="value.name" placeholder="请输入商品名称"></el-input>
           </el-form-item>
           <el-form-item label="商品价格：" prop="amount">
-            <el-input v-model="value.amount"></el-input>
+            <el-input v-model="value.amount" placeholder="请输入价格（单位为分）"></el-input>
           </el-form-item>
           <!-- <el-form-item label="是否禁用：" prop="is_active">
             <el-radio v-model="value.is_active" :label="0">禁用</el-radio>
@@ -52,8 +52,8 @@
           amount: [{validator: validAmount,trigger: 'blur'}],
         },
         value:{
-          name: '王者农药',
-          amount: 1000,
+          name: '',
+          amount: '',
           is_active: 1,
           game_id: null,
         },
