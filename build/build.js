@@ -1,7 +1,15 @@
 'use strict'
 require('./check-versions')()
+console.log('变量', process.env.NODE_ENV);
+if (process.env.NODE_ENV == 'production') {
+  console.log('生产', process.env.NODE_ENV);
+  process.env.NODE_ENV = 'production';
+} else {
+  console.log('测试', process.env.NODE_ENV);
+  process.env.NODE_ENV = 'develpment';
+}
 
-process.env.NODE_ENV = 'production'
+
 
 const ora = require('ora')
 const rm = require('rimraf')

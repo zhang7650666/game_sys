@@ -103,6 +103,7 @@
         centerDialogVisible: false, // 弹框提示
       }
     },
+    
     methods: {
       ...mapActions({
         actionLogin: 'Login' // 将 `this.actionLogin()` 映射为 `this.$store.dispatch('increment')`

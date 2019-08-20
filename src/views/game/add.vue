@@ -43,6 +43,7 @@
           callback()
           // callback(new Error('验证成功'))
         }
+        
       };
       return {
         rules: {
@@ -50,7 +51,7 @@
             {required: true, message: '请输入游戏名称', trigger: 'blur'},
             {min: 2, max: 20, message: '长度在 2 到 20 个数字或字符', trigger: 'blur'}
           ],
-          notify_url: [{validator: validNotifyUrl,trigger: 'blur'}],
+          notify_url:[...(process.env.NODE_ENV == 'production' ? [{validator: validNotifyUrl,trigger: 'blur'}] : [])] ,
         },
         value:{
           name: '',
@@ -74,7 +75,7 @@
             });
             return false;
           }
-        });
+        }); 
       },
       // 添加游戏
       handleAddGame(params) {
@@ -96,15 +97,15 @@
         this.$refs['clearValidName'].clearValidate();
         var el = document.querySelector('.err-tips');
         this.$refs[formName].validate((valid) => {
-          if (valid) {
+          if (valid && process.env.NODE_ENV == 'production') {
             el.style.display = 'block';
           } else {
             el.style.display = 'none';
-            this.$message({
-              message: '验证失败',
-              type: 'error',
-              duration:1000
-            });
+            // this.$message({
+            //   message: '验证失败',
+            //   type: 'error',
+            //   duration:1000
+            // });
             return false;
           }
         });

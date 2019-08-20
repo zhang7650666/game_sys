@@ -7,7 +7,7 @@ const vueLoaderConfig = require('./vue-loader.conf')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
-
+console.log('环境变量', process.env.NODE_ENV);
 
 
 module.exports = {
