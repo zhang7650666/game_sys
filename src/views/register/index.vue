@@ -201,10 +201,11 @@ import {adduser} from '@/api/login';
     margin-top: 50px;
   }
   .logo-wp .avatar{
-    width:100px;
-    height:100px;
-    background:#fff;
-    border-radius:100% 100%;
+    width:64px;
+    height:64px;
+    background:url('../../assets/images/logo1.png') no-repeat;
+    background-size: 64px 64px;
+    border-radius:32px 32px;
     display:inline-block;
   }
   .com-logo{

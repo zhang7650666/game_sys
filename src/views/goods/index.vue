@@ -50,6 +50,7 @@
         @click="handleAddProduct()"
         size="mini"
         :disabled="listQuery.game_id == null || listQuery.game_id == ''"
+        :title=titleText
         >
         添加
       </el-button>
@@ -123,7 +124,13 @@
           width="100">
           <template slot-scope="scope">
             <!-- <el-button @click="handleCheck(scope.row)" type="text" size="small">查看</el-button> -->
-            <el-button type="text" size="small" @click="handleEdit(scope.row)" :disabled="listQuery.game_id == null || listQuery.game_id == ''">编辑</el-button>
+            <el-button
+              type="text" 
+              size="small"
+              @click="handleEdit(scope.row)"
+              :disabled="isDisabled"
+              :title="isDisabled ? '游戏名称选择之后才能操作' :''"
+            >编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -180,6 +187,12 @@
             label: '禁用'
           }
         ],
+        isDisabled: true,
+      }
+    },
+    computed: {
+      titleText() {
+        return this.listQuery.game_id ? '' : '游戏名称选择之后才能操作';
       }
     },
     created(){
@@ -215,6 +228,7 @@
       // 商品列表
       getList() {
         this.listLoading = true;
+        this.isDisabled = this.listQuery.game_id ? false : true;
         listgoods(this.listQuery).then(res => {
           this.listLoading = false;
           this.list = this.timeSort(res.data.list);

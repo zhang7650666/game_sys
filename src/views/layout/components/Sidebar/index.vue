@@ -37,7 +37,7 @@ export default {
 </script>
 <style>
 .logo {
-  background: #648E8A url('../../../../assets/images/logo.png') no-repeat center;
+  background: #476180 url('../../../../assets/images/logo1.png') no-repeat center;
   background-size: 32px 32px;
   margin: 14pX 10px;
   height: 40px;;

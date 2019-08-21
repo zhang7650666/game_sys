@@ -51,7 +51,9 @@
     </el-card>
     <!-- 忘记密码提示框 -->
     <el-dialog
+      class="dialog"
       title="联系客服"
+      :modal=true
       :visible.sync="centerDialogVisible"
       width="20%"
       left>
@@ -184,7 +186,7 @@ html, body, #app{
     right: 0px;
     bottom: 0px;
     background: #ccc;
-    z-index: 100;
+    z-index: 3000;
   }
   .login-form-layout {
     position: absolute;
@@ -216,10 +218,11 @@ html, body, #app{
     margin-top: 50px;
   }
   .logo-wp .avatar{
-    width:100px;
-    height:100px;
-    background:#fff;
-    border-radius:100% 100%;
+    width:64px;
+    height:64px;
+    background:url('../../assets/images/logo1.png') no-repeat;
+    background-size: 64px 64px;
+    border-radius:32px 32px;
     display:inline-block;
   }
   .com-logo{
