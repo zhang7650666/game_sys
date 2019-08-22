@@ -92,6 +92,8 @@
           if(res.code == 200){
             this.$router.push({path: '/game'});
           }
+        }).catch(err => {
+          console.log(err);
         });
       },
 

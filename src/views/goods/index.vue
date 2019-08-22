@@ -197,13 +197,8 @@
     },
     created(){
       // 获取初始化数据
-      // if (this.$route.query.game_id) {
-      //   this.listQuery.game_id = Number(this.$route.query.game_id);
-      //   this.listQuery.name = this.$route.query.name;
-      //   this.listQuery.is_active = Number(this.$route.query.is_active);
-      // }
       this.$store.dispatch("setCompany", Cookies.get('company'));
-      this.listQuery.game_id = this.getGameID()
+      this.listQuery.game_id = Number(this.getGameID());
       this.getGameList();
       this.getList()
     },
@@ -223,6 +218,8 @@
         };
         listgames(params).then(res => {
           this.gameList = this.timeSort(res.data.list);
+        }).catch(err => {
+          console.log(err);
         });
       },
       // 商品列表
@@ -236,6 +233,8 @@
           this.business_name = res.data.business_name;
           // this.listQuery.start = response.data.totalPage;
           // this.pageSize = response.data.pageSize;
+        }).catch(err => {
+          console.log(err);
         });
       },
       // 排序

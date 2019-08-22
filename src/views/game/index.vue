@@ -169,6 +169,8 @@
           this.$store.dispatch("setCompany", this.business_name);
           // this.listQuery.start = response.data.totalPage;
           // this.pageSize = response.data.pageSize;
+        }).catch(err => {
+          console.log(err);
         });
       },
       // 排序

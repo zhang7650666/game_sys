@@ -134,6 +134,8 @@ import {adduser} from '@/api/login';
           if(res.code == 200){
             this.$router.push({path: '/login'});
           }
+        }).catch(err => {
+          console.log(err);
         });
       },
       // 登录

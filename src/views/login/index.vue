@@ -1,5 +1,5 @@
 <template>
-  <div class="reg-wp">
+  <div class="logo-wrapper">
     <div class="logo-wp">
       <span class="avatar"></span>
       <span class="com-logo">INGame</span>
@@ -53,7 +53,6 @@
     <el-dialog
       class="dialog"
       title="联系客服"
-      :modal=true
       :visible.sync="centerDialogVisible"
       width="20%"
       left>
@@ -127,6 +126,8 @@
             const str = `/?phone=${tempObj.username}&pwd=${tempObj.password}`;
             this.actionLogin(str).then((res) => {
               this.$router.push({path: '/game'})
+            }).catch(err => {
+              console.log(err);
             });
             
             // window.location.href=SupportUrl;
@@ -166,10 +167,10 @@
 </script>
 <style>
 
-.reg-wp .el-card__body {
+.logo-wrapper .el-card__body {
     padding: 30px;
   }
-  .clear-margin .el-form-item__content{
+.logo-wrapper .clear-margin .el-form-item__content{
     margin-left: 30px !important;
   }
 </style>
@@ -179,14 +180,14 @@ html, body, #app{
     width: 100%;
     height: 100%;
   }
-  .reg-wp{
+  .logo-wrapper{
     position: absolute;
     top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
     background: #ccc;
-    z-index: 3000;
+    /* z-index: 3000; */
   }
   .login-form-layout {
     position: absolute;

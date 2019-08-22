@@ -85,6 +85,8 @@
           if(res.code == 200){
             window.history.go(-1);
           }
+        }).catch(err => {
+          console.log(err);
         });
       },
 

@@ -55,6 +55,8 @@
         }
         detailGoods(params).then((res) => {
           this.info = res.data;
+        }).catch(err => {
+          console.log(err);
         });
       },
       // 取消

@@ -82,8 +82,11 @@
             editGoods(this.value).then(res => {
               console.log(res);
               if(res.code == 200){
-                window.history.go(-1);
+                // this.$router.push({path: '/goods/goodslist', query: {game_id: this.$route.query.game_id}});
+                window.history.back();
               }
+            }).catch(err => {
+              console.log(err);
             });
           } else {
             this.$message({
@@ -98,6 +101,7 @@
 
       // 取消
       handleCancel() {
+        // this.$router.push({path: '/goods/goodslist', query: {game_id: this.$route.query.game_id}});
         window.history.go(-1);
       },
 
